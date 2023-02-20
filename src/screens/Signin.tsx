@@ -12,14 +12,13 @@ export function SignIn() {
       contentContainerStyle={{ flexGrow: 1 }}
       showsVerticalScrollIndicator={false}
     >
-      <VStack flex={1} bg="gray.700" px={10} pb={16}>
+      <VStack flex={1} px={10} pb={16}>
         <Image
           source={BackgroundImg}
           alt="Pessoas treinando"
           resizeMode="contain"
           position="absolute"
         />
-
         <Center my={24}>
           <LogoSvg />
 
@@ -27,7 +26,6 @@ export function SignIn() {
             Treine sua mente e o seu corpo.
           </Text>
         </Center>
-
         <Center>
           <Heading color="gray.100" fontSize="xl" mb={6} fontFamily="heading">
             Acesse a conta
@@ -42,13 +40,11 @@ export function SignIn() {
 
           <Button title="Acessar" />
         </Center>
-
         <Center mt={24}>
           <Text color="gray.100" fontSize="sm" mb={3} fontFamily="body">
             Ainda não tem acesso?
           </Text>
         </Center>
-
         <Button title="Criar Conta" variant="outline" />
       </VStack>
     </ScrollView>
