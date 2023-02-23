@@ -1,8 +1,8 @@
-import { Text, Pressable, IPressableProps } from 'native-base';
+import { Text, Pressable, IPressableProps } from "native-base";
 
 type Props = IPressableProps & {
   name: string;
-}
+};
 
 export function Group({ name, ...rest }: Props) {
   return (
@@ -15,6 +15,10 @@ export function Group({ name, ...rest }: Props) {
       justifyContent="center"
       alignItems="center"
       overflow="hidden"
+      _pressed={{
+        borderColor: "green.500",
+        borderWidth: 1,
+      }}
       {...rest}
     >
       <Text
