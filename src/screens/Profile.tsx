@@ -19,14 +19,23 @@ const PHOTO_SIZE = 33;
 
 export function Profile() {
   const [photoIsLoading, setPhotoIsLoading] = useState(false);
+  const [userPhoto, setUserPhoto] = useState(
+    "https://github.com/rodrigorgtic.png"
+  );
 
   async function handleUserPhotoSelected() {
-    await ImagePicker.launchImageLibraryAsync({
+    const photoSelected = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       quality: 1,
       aspect: [4, 4],
       allowsEditing: true,
     });
+
+    if (photoSelected.cancelled) {
+      return;
+    }
+
+    setUserPhoto(photoSelected.uri);
   }
 
   return (
@@ -45,7 +54,7 @@ export function Profile() {
             />
           ) : (
             <UserPhoto
-              source={{ uri: "https://github.com/rodrigorgtic.png" }}
+              source={{ uri: userPhoto }}
               alt="Foto do usuário"
               size={PHOTO_SIZE}
             />
