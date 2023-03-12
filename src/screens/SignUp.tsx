@@ -1,15 +1,23 @@
 import { useNavigation } from "@react-navigation/native";
 import { VStack, Image, Text, Center, Heading, ScrollView } from "native-base";
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller } from 'react-hook-form';
 
-import LogoSvg from "@assets/logo.svg";
-import BackgroundImg from "@assets/background.png";
+import LogoSvg from '@assets/logo.svg';
+import BackgroundImg from '@assets/background.png';
 
 import { Input } from "@components/Input";
 import { Button } from "@components/Button";
 
+type FormDataProps = {
+  name: string;
+  email: string;
+  password: string;
+  password_confirm: string;
+}
+
 export function SignUp() {
-  const { control, handleSubmit } = useForm();
+  
+  const { control, handleSubmit } = useForm<FormDataProps>();
 
   const navigation = useNavigation();
 
@@ -17,17 +25,14 @@ export function SignUp() {
     navigation.goBack();
   }
 
-  function handleSignUp(data: any) {
-    console.log({ data });
+  function handleSignUp({ name, email, password, password_confirm }: FormDataProps) {
+    console.log({ name, email, password, password_confirm })
   }
 
   return (
-    <ScrollView
-      contentContainerStyle={{ flexGrow: 1 }}
-      showsVerticalScrollIndicator={false}
-    >
-      <VStack flex={1} px={10} pb={16}>
-        <Image
+    <ScrollView contentContainerStyle={{ flexGrow: 1 }} showsVerticalScrollIndicator={false}>
+        <VStack flex={1} px={10} pb={16}>
+        <Image 
           source={BackgroundImg}
           defaultSource={BackgroundImg}
           alt="Pessoas treinando"
@@ -48,20 +53,24 @@ export function SignUp() {
             Crie sua conta
           </Heading>
 
-          <Controller
+          <Controller 
             control={control}
             name="name"
             render={({ field: { onChange, value } }) => (
-              <Input placeholder="Nome" onChangeText={onChange} value={value} />
+              <Input 
+                placeholder="Nome"
+                onChangeText={onChange}
+                value={value}
+              />
             )}
           />
 
-          <Controller
+          <Controller 
             control={control}
             name="email"
             render={({ field: { onChange, value } }) => (
-              <Input
-                placeholder="E-mail"
+              <Input 
+                placeholder="E-mail" 
                 keyboardType="email-address"
                 autoCapitalize="none"
                 onChangeText={onChange}
@@ -70,12 +79,12 @@ export function SignUp() {
             )}
           />
 
-          <Controller
+          <Controller 
             control={control}
             name="password"
             render={({ field: { onChange, value } }) => (
-              <Input
-                placeholder="Senha"
+              <Input 
+                placeholder="Senha" 
                 secureTextEntry
                 onChangeText={onChange}
                 value={value}
@@ -83,12 +92,12 @@ export function SignUp() {
             )}
           />
 
-          <Controller
+          <Controller 
             control={control}
             name="password_confirm"
             render={({ field: { onChange, value } }) => (
-              <Input
-                placeholder="Confirmar a Senha"
+              <Input 
+                placeholder="Confirmar a Senha" 
                 secureTextEntry
                 onChangeText={onChange}
                 value={value}
@@ -98,15 +107,15 @@ export function SignUp() {
             )}
           />
 
-          <Button
-            title="Criar e acessar"
+          <Button 
+            title="Criar e acessar" 
             onPress={handleSubmit(handleSignUp)}
           />
         </Center>
-
-        <Button
-          title="Voltar para o login"
-          variant="outline"
+        
+        <Button 
+          title="Voltar para o login" 
+          variant="outline" 
           mt={24}
           onPress={handleGoBack}
         />
